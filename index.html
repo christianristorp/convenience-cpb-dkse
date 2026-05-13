@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convenience CPB Deployment — DKSE Pre-Chopped Swap</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --surface: #1f1f35;
+  --border: #2a2a45;
+  --text: #e4e4ef;
+  --text-secondary: #9a9ab0;
+  --accent: #6c63ff;
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.08);
+  --warning: #fbbf24;
+  --info: #60a5fa;
+  --info-bg: rgba(96, 165, 250, 0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 40px 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 1.25rem; font-weight: 600; margin-top: 32px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+h3 { font-size: 0.95rem; font-weight: 600; margin-top: 20px; margin-bottom: 8px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+p { margin-bottom: 12px; }
+.meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 24px; }
+.callout {
+  border-left: 3px solid var(--info);
+  background: var(--info-bg);
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 16px 0;
+  font-size: 0.9rem;
+}
+.callout.success {
+  border-left-color: var(--success);
+  background: var(--success-bg);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.stat .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.stat .value.green { color: var(--success); }
+.stat .label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.85rem;
+}
+th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+tr:hover td { background: rgba(108, 99, 255, 0.04); }
+.right { text-align: right; }
+.row-success td { background: var(--success-bg); }
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 12px 0;
+}
+.note { color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px; }
+.bar-chart { margin: 16px 0; }
+.bar-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+.bar-label { width: 160px; font-size: 0.8rem; text-align: right; color: var(--text-secondary); }
+.bar-track { flex: 1; height: 24px; background: var(--surface); border-radius: 4px; position: relative; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+.bar-fill.accent { background: var(--accent); }
+.bar-fill.green { background: var(--success); }
+.bar-fill.target { background: var(--warning); opacity: 0.5; }
+.bar-value { width: 50px; font-size: 0.8rem; font-weight: 600; }
+.target-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--warning);
+  left: 80%;
+}
+footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<h1>Convenience CPB Deployment — DKSE Pre-Chopped Swap</h1>
+<p class="meta">Analysis: Christian Jensen · 13 May 2026 · Menu period: W01–W20 2026 · Market: DKSE</p>
+
+<div class="callout">
+  <strong>Open question:</strong> Does ingredient_name = 'onion' capture all intended variants (red onion / shallot / spring onion)? Current filter uses exact match only. Confirm with Taryn before deployment.
+</div>
+
+<h2>Baseline</h2>
+
+<div class="grid-2">
+  <div>
+    <h3>Recipepool (latent opportunity)</h3>
+    <div class="stats">
+      <div class="stat"><div class="value">1,525</div><div class="label">Total recipes</div></div>
+      <div class="stat"><div class="value">375</div><div class="label">≤20 min</div></div>
+      <div class="stat"><div class="value">24.6%</div><div class="label">Quick share</div></div>
+    </div>
+  </div>
+  <div>
+    <h3>Menu W01–W20 (budget view)</h3>
+    <div class="stats">
+      <div class="stat"><div class="value">4,040</div><div class="label">Total slots</div></div>
+      <div class="stat"><div class="value">1,050</div><div class="label">≤20 min</div></div>
+      <div class="stat"><div class="value">26.0%</div><div class="label">Quick share</div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Swap Impact</h2>
+
+<h3>Shortlist validation</h3>
+<table>
+  <tr><th>Shortlist</th><th>Count</th><th>Validation</th><th>Status</th></tr>
+  <tr class="row-success"><td>Onion (filter-derived)</td><td>142</td><td>Expected ~138, within ±5</td><td>Pass</td></tr>
+  <tr class="row-success"><td>Potato (Taryn's list)</td><td>25</td><td>All 25 resolve to active recipes</td><td>Pass</td></tr>
+  <tr><td>Overlap</td><td>0</td><td>No recipes on both lists</td><td>N/A</td></tr>
+</table>
+
+<h3>Subset classification (recipepool)</h3>
+<table>
+  <tr><th>Swap</th><th class="right">Total</th><th class="right">(a) Already ≤20</th><th class="right">(b) Crosses threshold</th><th class="right">(c) Still >20</th></tr>
+  <tr><td>Onion</td><td class="right">142</td><td class="right">58</td><td class="right">84</td><td class="right">0</td></tr>
+  <tr><td>Potato</td><td class="right">25</td><td class="right">0</td><td class="right">25</td><td class="right">0</td></tr>
+  <tr><td><strong>Combined</strong></td><td class="right"><strong>167</strong></td><td class="right"><strong>58</strong></td><td class="right"><strong>109</strong></td><td class="right"><strong>0</strong></td></tr>
+</table>
+<p class="note">Onion recipes cluster at 21–25 min (5-min reduction crosses to ≤20). Potato recipes at 25–30 min all reach ≤20 post-swap (confirmed: prep time saving is larger for potato chopping).</p>
+
+<h3>Post-swap quick_share</h3>
+<div class="grid-2">
+  <div>
+    <h3>Recipepool</h3>
+    <div class="stats">
+      <div class="stat"><div class="value">24.6%</div><div class="label">Baseline</div></div>
+      <div class="stat"><div class="value green">31.7%</div><div class="label">Post-swap</div></div>
+      <div class="stat"><div class="value green">+7.1pp</div><div class="label">Gain</div></div>
+    </div>
+    <p class="note">(375 + 84 + 25) / 1,525 = 31.7%. Residual to 40%: 8.3pp.</p>
+  </div>
+  <div>
+    <h3>Menu W01–W20</h3>
+    <div class="stats">
+      <div class="stat"><div class="value">26.0%</div><div class="label">Baseline</div></div>
+      <div class="stat"><div class="value green">33.3%</div><div class="label">Post-swap</div></div>
+      <div class="stat"><div class="value green">+7.3pp</div><div class="label">Gain</div></div>
+    </div>
+    <p class="note">1,050 → 1,346 quick slots (+296). Residual to 40%: 6.7pp.</p>
+  </div>
+</div>
+
+<h2>Cost Impact</h2>
+
+<h3>Per-recipe cost delta (SEK)</h3>
+<table>
+  <tr><th>Swap</th><th>Size</th><th class="right">Avg Δ/recipe</th><th class="right">Current price</th><th class="right">Swap price</th></tr>
+  <tr><td>Onion</td><td>2p</td><td class="right">+2.85</td><td class="right">0.40 (1 pick)</td><td class="right">3.25 (1 pick)</td></tr>
+  <tr><td>Onion</td><td>3p</td><td class="right">+5.74</td><td class="right">0.76 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
+  <tr><td>Onion</td><td>4p</td><td class="right">+5.71</td><td class="right">0.79 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
+  <tr><td>Potato</td><td>2p</td><td class="right">+8.13</td><td class="right">4.03 (1 pick)</td><td class="right">12.15 (1 pick)</td></tr>
+  <tr><td>Potato</td><td>3p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
+  <tr><td>Potato</td><td>4p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
+</table>
+
+<h3>CPB delta (volume-weighted, W01–W20 actuals)</h3>
+<div class="stats">
+  <div class="stat"><div class="value">2.89M</div><div class="label">Total cost Δ (SEK)</div></div>
+  <div class="stat"><div class="value">2.31</div><div class="label">CPB Δ (SEK/box/wk)</div></div>
+  <div class="stat"><div class="value green">0.20</div><div class="label">CPB Δ (EUR/box/wk)</div></div>
+  <div class="stat"><div class="value green">29%</div><div class="label">Budget consumed</div></div>
+</div>
+<p class="note">Budget: 0.7 EUR. This lever consumes 0.20 EUR (29%), leaving 0.50 EUR for future SKUs. FX: 11.49 SEK/EUR.</p>
+
+<h2>Gap to Target</h2>
+
+<div class="bar-chart">
+  <div class="bar-row">
+    <div class="bar-label">Recipepool baseline</div>
+    <div class="bar-track"><div class="bar-fill accent" style="width:49.2%"></div><div class="target-line"></div></div>
+    <div class="bar-value">24.6%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label">Recipepool post-swap</div>
+    <div class="bar-track"><div class="bar-fill green" style="width:63.4%"></div><div class="target-line"></div></div>
+    <div class="bar-value">31.7%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label">Menu baseline</div>
+    <div class="bar-track"><div class="bar-fill accent" style="width:52%"></div><div class="target-line"></div></div>
+    <div class="bar-value">26.0%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label">Menu post-swap</div>
+    <div class="bar-track"><div class="bar-fill green" style="width:66.6%"></div><div class="target-line"></div></div>
+    <div class="bar-value">33.3%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label">Target</div>
+    <div class="bar-track"><div class="bar-fill target" style="width:80%"></div></div>
+    <div class="bar-value">40.0%</div>
+  </div>
+</div>
+<p class="note">Yellow line = 40% target. Bar width scaled to 50% max.</p>
+
+<table>
+  <tr><th>View</th><th class="right">Baseline</th><th class="right">Post-swap</th><th class="right">Target</th><th class="right">Residual gap</th></tr>
+  <tr><td>Recipepool (ceiling)</td><td class="right">24.6%</td><td class="right">31.7%</td><td class="right">40%</td><td class="right">8.3pp</td></tr>
+  <tr><td>Menu W01–W20 (budget)</td><td class="right">26.0%</td><td class="right">33.3%</td><td class="right">40%</td><td class="right">6.7pp</td></tr>
+</table>
+
+<h2>Recommendation</h2>
+
+<div class="callout success">
+  <strong>Deploy both swaps.</strong> Combined impact: +7.3pp on menu quick_share (26% → 33.3%) at 0.20 EUR CPB — consuming 29% of the 0.7 EUR budget. Both swaps deliver meaningful share gain now that all potato recipes reach ≤20 min post-swap. 71% budget headroom remains for future SKUs.
+</div>
+
+<table>
+  <tr><th>Condition</th><th>Result</th></tr>
+  <tr class="row-success"><td>Gap closes within budget</td><td>Partial — 7.3pp of 14pp gap closed at 29% of budget</td></tr>
+  <tr class="row-success"><td>Meaningful share impact</td><td>Yes — both swaps move menu from 26% to 33.3%</td></tr>
+  <tr class="row-success"><td>Budget exhaustion risk</td><td>Low — 71% headroom remaining for future SKUs</td></tr>
+</table>
+
+<p class="note" style="margin-top: 16px;">Remaining 6.7pp gap to 40% target requires either new convenience-native recipes or future SKUs (pre-breaded, marinated, pre-cooked proteins) not yet onboarded.</p>
+
+<footer>
+  <p>Source: nordics-product-analytics/ad_hoc_analyses/convenience_cpb_prechopped_swap.sql</p>
+  <p>Tables: dimension_recipes_enriched, recipe_csku_ingredient_picklist, menu_recipe_csku_ingredient_picklist, staticprices_enriched, dimension_recipes_in_mps_historic_enriched, facts_recipes_ordered_enriched</p>
+  <p>Open question pending: Onion ingredient scope (exact 'onion' vs. red onion / shallot / spring onion) — confirm with Taryn.</p>
+</footer>
+
+</body>
+</html>
