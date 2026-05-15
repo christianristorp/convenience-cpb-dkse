@@ -25,7 +25,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   padding: 40px 20px;
-  max-width: 960px;
+  max-width: 1020px;
   margin: 0 auto;
 }
 h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 4px; }
@@ -92,6 +92,7 @@ td {
 tr:hover td { background: rgba(108, 99, 255, 0.04); }
 .right { text-align: right; }
 .row-success td { background: var(--success-bg); }
+.row-highlight td { background: rgba(108, 99, 255, 0.06); font-weight: 600; }
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -101,20 +102,19 @@ tr:hover td { background: rgba(108, 99, 255, 0.04); }
 .note { color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px; }
 .bar-chart { margin: 16px 0; }
 .bar-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
-.bar-label { width: 160px; font-size: 0.8rem; text-align: right; color: var(--text-secondary); }
-.bar-track { flex: 1; height: 24px; background: var(--surface); border-radius: 4px; position: relative; overflow: hidden; }
-.bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+.bar-label { width: 140px; font-size: 0.8rem; text-align: right; color: var(--text-secondary); }
+.bar-track { flex: 1; height: 28px; background: var(--surface); border-radius: 4px; position: relative; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 0.75rem; font-weight: 600; color: #fff; }
 .bar-fill.accent { background: var(--accent); }
 .bar-fill.green { background: var(--success); }
+.bar-fill.teal { background: #14b8a6; }
 .bar-fill.target { background: var(--warning); opacity: 0.5; }
-.bar-value { width: 50px; font-size: 0.8rem; font-weight: 600; }
 .target-line {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 2px;
   background: var(--warning);
-  left: 80%;
 }
 footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); }
 </style>
@@ -122,10 +122,10 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 <body>
 
 <h1>Convenience CPB Deployment — DKSE Pre-Chopped Swap</h1>
-<p class="meta">Analysis: Christian Jensen · 13 May 2026 · Menu period: W01–W20 2026 · Market: DKSE</p>
+<p class="meta">Analysis: Christian Jensen · 15 May 2026 · Menu period: W01–W20 2026 · Market: DKSE</p>
 
 <div class="callout">
-  <strong>Open question:</strong> Does ingredient_name = 'onion' capture all intended variants (red onion / shallot / spring onion)? Current filter uses exact match only. Confirm with Taryn before deployment.
+  <strong>Open question:</strong> Does ingredient_name = 'onion' capture all intended variants (red onion / shallot / spring onion)? Confirm with Taryn before deployment.
 </div>
 
 <h2>Baseline</h2>
@@ -149,110 +149,95 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   </div>
 </div>
 
-<h2>Swap Impact</h2>
+<h2>Swap Impact — Quick Share</h2>
 
-<h3>Shortlist validation</h3>
+<h3>Shortlist &amp; subset classification</h3>
 <table>
-  <tr><th>Shortlist</th><th>Count</th><th>Validation</th><th>Status</th></tr>
-  <tr class="row-success"><td>Onion (filter-derived)</td><td>142</td><td>Expected ~138, within ±5</td><td>Pass</td></tr>
-  <tr class="row-success"><td>Potato (Taryn's list)</td><td>25</td><td>All 25 resolve to active recipes</td><td>Pass</td></tr>
-  <tr><td>Overlap</td><td>0</td><td>No recipes on both lists</td><td>N/A</td></tr>
+  <tr><th>Lever</th><th class="right">Recipes</th><th>Bucket</th><th>Share impact</th></tr>
+  <tr><td>Onion — already ≤20 min</td><td class="right">58</td><td>Cost only</td><td>None</td></tr>
+  <tr class="row-success"><td>Onion — crosses threshold</td><td class="right">84</td><td>21–25 → ≤20 min</td><td>+6.1pp menu</td></tr>
+  <tr class="row-success"><td>Potato — crosses threshold</td><td class="right">25</td><td>25–30 → ≤20 min</td><td>+1.2pp menu</td></tr>
+  <tr class="row-highlight"><td><strong>Combined</strong></td><td class="right"><strong>167</strong></td><td></td><td><strong>+7.3pp menu</strong></td></tr>
 </table>
 
-<h3>Subset classification (recipepool)</h3>
-<table>
-  <tr><th>Swap</th><th class="right">Total</th><th class="right">(a) Already ≤20</th><th class="right">(b) Crosses threshold</th><th class="right">(c) Still >20</th></tr>
-  <tr><td>Onion</td><td class="right">142</td><td class="right">58</td><td class="right">84</td><td class="right">0</td></tr>
-  <tr><td>Potato</td><td class="right">25</td><td class="right">0</td><td class="right">25</td><td class="right">0</td></tr>
-  <tr><td><strong>Combined</strong></td><td class="right"><strong>167</strong></td><td class="right"><strong>58</strong></td><td class="right"><strong>109</strong></td><td class="right"><strong>0</strong></td></tr>
-</table>
-<p class="note">Onion recipes cluster at 21–25 min (5-min reduction crosses to ≤20). Potato recipes at 25–30 min all reach ≤20 post-swap (confirmed: prep time saving is larger for potato chopping).</p>
+<h3>Quick share build-up — stepped by lever</h3>
 
-<h3>Post-swap quick_share</h3>
-<div class="grid-2">
-  <div>
-    <h3>Recipepool</h3>
-    <div class="stats">
-      <div class="stat"><div class="value">24.6%</div><div class="label">Baseline</div></div>
-      <div class="stat"><div class="value green">31.7%</div><div class="label">Post-swap</div></div>
-      <div class="stat"><div class="value green">+7.1pp</div><div class="label">Gain</div></div>
-    </div>
-    <p class="note">(375 + 84 + 25) / 1,525 = 31.7%. Residual to 40%: 8.3pp.</p>
+<table>
+  <tr><th>Step</th><th class="right">Recipepool</th><th class="right">Menu W01–W20</th><th class="right">Incremental gain</th></tr>
+  <tr><td>Baseline</td><td class="right">24.6% (375 / 1,525)</td><td class="right">26.0% (1,050 / 4,040)</td><td class="right">—</td></tr>
+  <tr class="row-success"><td>+ Onion (crosses threshold)</td><td class="right">30.1% (459 / 1,525)</td><td class="right">32.1% (1,296 / 4,040)</td><td class="right">+6.1pp</td></tr>
+  <tr class="row-success"><td>+ Potato (all cross)</td><td class="right">31.7% (484 / 1,525)</td><td class="right">33.3% (1,346 / 4,040)</td><td class="right">+1.2pp</td></tr>
+  <tr class="row-highlight"><td><strong>Total post-swap</strong></td><td class="right"><strong>31.7%</strong></td><td class="right"><strong>33.3%</strong></td><td class="right"><strong>+7.3pp</strong></td></tr>
+</table>
+
+<div class="bar-chart">
+  <div class="bar-row">
+    <div class="bar-label">Baseline</div>
+    <div class="bar-track"><div class="bar-fill accent" style="width:52%">26.0%</div><div class="target-line" style="left:80%"></div></div>
   </div>
-  <div>
-    <h3>Menu W01–W20</h3>
-    <div class="stats">
-      <div class="stat"><div class="value">26.0%</div><div class="label">Baseline</div></div>
-      <div class="stat"><div class="value green">33.3%</div><div class="label">Post-swap</div></div>
-      <div class="stat"><div class="value green">+7.3pp</div><div class="label">Gain</div></div>
-    </div>
-    <p class="note">1,050 → 1,346 quick slots (+296). Residual to 40%: 6.7pp.</p>
+  <div class="bar-row">
+    <div class="bar-label">+ Onion crosses</div>
+    <div class="bar-track"><div class="bar-fill green" style="width:64.2%">32.1%</div><div class="target-line" style="left:80%"></div></div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label">+ Potato</div>
+    <div class="bar-track"><div class="bar-fill teal" style="width:66.6%">33.3%</div><div class="target-line" style="left:80%"></div></div>
   </div>
 </div>
+<p class="note">Yellow line = 40% target. Onion drives 84% of the share gain, potato adds the remaining 16%.</p>
 
-<h2>Cost Impact</h2>
+<h2>Swap Impact — Cost</h2>
 
 <h3>Per-recipe cost delta (SEK)</h3>
 <table>
-  <tr><th>Swap</th><th>Size</th><th class="right">Avg Δ/recipe</th><th class="right">Current price</th><th class="right">Swap price</th></tr>
-  <tr><td>Onion</td><td>2p</td><td class="right">+2.85</td><td class="right">0.40 (1 pick)</td><td class="right">3.25 (1 pick)</td></tr>
-  <tr><td>Onion</td><td>3p</td><td class="right">+5.74</td><td class="right">0.76 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
-  <tr><td>Onion</td><td>4p</td><td class="right">+5.71</td><td class="right">0.79 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
+  <tr><th>Lever</th><th>Size</th><th class="right">Avg Δ/recipe</th><th class="right">Current price</th><th class="right">Swap price</th></tr>
+  <tr><td>Onion (already ≤20)</td><td>2p</td><td class="right">+2.85</td><td class="right">0.40 (1 pick)</td><td class="right">3.25 (1 pick)</td></tr>
+  <tr><td>Onion (already ≤20)</td><td>3p/4p</td><td class="right">+5.72</td><td class="right">0.78 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
+  <tr><td>Onion (crosses threshold)</td><td>2p</td><td class="right">+2.85</td><td class="right">0.40 (1 pick)</td><td class="right">3.25 (1 pick)</td></tr>
+  <tr><td>Onion (crosses threshold)</td><td>3p/4p</td><td class="right">+5.72</td><td class="right">0.78 (2 picks)</td><td class="right">6.50 (2 picks)</td></tr>
   <tr><td>Potato</td><td>2p</td><td class="right">+8.13</td><td class="right">4.03 (1 pick)</td><td class="right">12.15 (1 pick)</td></tr>
-  <tr><td>Potato</td><td>3p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
-  <tr><td>Potato</td><td>4p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
+  <tr><td>Potato</td><td>3p/4p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
 </table>
 
-<h3>CPB delta (volume-weighted, W01–W20 actuals)</h3>
+<h3>CPB delta — stepped by lever (volume-weighted, W01–W20)</h3>
+<table>
+  <tr><th>Lever</th><th class="right">Recipes</th><th>Share impact</th><th class="right">Cost Δ (SEK)</th><th class="right">CPB Δ (EUR)</th><th class="right">Budget</th></tr>
+  <tr><td>Onion — already ≤20</td><td class="right">58</td><td>None (cost only)</td><td class="right">1.11M</td><td class="right">+0.08</td><td class="right">11%</td></tr>
+  <tr class="row-success"><td>Onion — crosses threshold</td><td class="right">84</td><td>+6.1pp menu</td><td class="right">1.59M</td><td class="right">+0.12</td><td class="right">17%</td></tr>
+  <tr class="row-highlight"><td><strong>Onion subtotal</strong></td><td class="right"><strong>142</strong></td><td><strong>+6.1pp menu</strong></td><td class="right"><strong>2.70M</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>28%</strong></td></tr>
+  <tr class="row-success"><td>Potato</td><td class="right">25</td><td>+1.2pp menu</td><td class="right">0.19M</td><td class="right">+0.01</td><td class="right">1%</td></tr>
+  <tr class="row-highlight"><td><strong>Combined total</strong></td><td class="right"><strong>167</strong></td><td><strong>+7.3pp menu</strong></td><td class="right"><strong>2.89M</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>29%</strong></td></tr>
+</table>
+
 <div class="stats">
   <div class="stat"><div class="value">2.89M</div><div class="label">Total cost Δ (SEK)</div></div>
   <div class="stat"><div class="value">2.31</div><div class="label">CPB Δ (SEK/box/wk)</div></div>
   <div class="stat"><div class="value green">0.20</div><div class="label">CPB Δ (EUR/box/wk)</div></div>
   <div class="stat"><div class="value green">29%</div><div class="label">Budget consumed</div></div>
 </div>
-<p class="note">Budget: 0.7 EUR. This lever consumes 0.20 EUR (29%), leaving 0.50 EUR for future SKUs. FX: 11.49 SEK/EUR.</p>
+
+<p class="note">
+  Budget: 0.7 EUR. Onion-crosses is the largest CPB draw (0.12 EUR) but also
+  the primary share driver. Onion-already-quick (0.08 EUR) delivers no share
+  gain — pure cost investment in consistency. Potato is negligible CPB (0.01 EUR)
+  with meaningful share contribution. FX: 11.49 SEK/EUR.
+</p>
 
 <h2>Gap to Target</h2>
 
-<div class="bar-chart">
-  <div class="bar-row">
-    <div class="bar-label">Recipepool baseline</div>
-    <div class="bar-track"><div class="bar-fill accent" style="width:49.2%"></div><div class="target-line"></div></div>
-    <div class="bar-value">24.6%</div>
-  </div>
-  <div class="bar-row">
-    <div class="bar-label">Recipepool post-swap</div>
-    <div class="bar-track"><div class="bar-fill green" style="width:63.4%"></div><div class="target-line"></div></div>
-    <div class="bar-value">31.7%</div>
-  </div>
-  <div class="bar-row">
-    <div class="bar-label">Menu baseline</div>
-    <div class="bar-track"><div class="bar-fill accent" style="width:52%"></div><div class="target-line"></div></div>
-    <div class="bar-value">26.0%</div>
-  </div>
-  <div class="bar-row">
-    <div class="bar-label">Menu post-swap</div>
-    <div class="bar-track"><div class="bar-fill green" style="width:66.6%"></div><div class="target-line"></div></div>
-    <div class="bar-value">33.3%</div>
-  </div>
-  <div class="bar-row">
-    <div class="bar-label">Target</div>
-    <div class="bar-track"><div class="bar-fill target" style="width:80%"></div></div>
-    <div class="bar-value">40.0%</div>
-  </div>
-</div>
-<p class="note">Yellow line = 40% target. Bar width scaled to 50% max.</p>
-
 <table>
-  <tr><th>View</th><th class="right">Baseline</th><th class="right">Post-swap</th><th class="right">Target</th><th class="right">Residual gap</th></tr>
-  <tr><td>Recipepool (ceiling)</td><td class="right">24.6%</td><td class="right">31.7%</td><td class="right">40%</td><td class="right">8.3pp</td></tr>
-  <tr><td>Menu W01–W20 (budget)</td><td class="right">26.0%</td><td class="right">33.3%</td><td class="right">40%</td><td class="right">6.7pp</td></tr>
+  <tr><th>View</th><th class="right">Baseline</th><th class="right">+ Onion crosses</th><th class="right">+ Potato</th><th class="right">Total</th><th class="right">Target</th><th class="right">Residual</th></tr>
+  <tr><td>Recipepool</td><td class="right">24.6%</td><td class="right">30.1%</td><td class="right">31.7%</td><td class="right">31.7%</td><td class="right">40%</td><td class="right">8.3pp</td></tr>
+  <tr><td>Menu W01–W20</td><td class="right">26.0%</td><td class="right">32.1%</td><td class="right">33.3%</td><td class="right">33.3%</td><td class="right">40%</td><td class="right">6.7pp</td></tr>
 </table>
 
 <h2>Recommendation</h2>
 
 <div class="callout success">
-  <strong>Deploy both swaps.</strong> Combined impact: +7.3pp on menu quick_share (26% → 33.3%) at 0.20 EUR CPB — consuming 29% of the 0.7 EUR budget. Both swaps deliver meaningful share gain now that all potato recipes reach ≤20 min post-swap. 71% budget headroom remains for future SKUs.
+  <strong>Deploy both swaps.</strong> Combined impact: +7.3pp on menu quick_share
+  (26% → 33.3%) at 0.20 EUR CPB — consuming 29% of the 0.7 EUR budget.
+  Onion-crosses is the primary share driver (84% of gain). Potato adds +1.2pp
+  at near-zero CPB. 71% budget headroom remains for future SKUs.
 </div>
 
 <table>
@@ -260,9 +245,15 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <tr class="row-success"><td>Gap closes within budget</td><td>Partial — 7.3pp of 14pp gap closed at 29% of budget</td></tr>
   <tr class="row-success"><td>Meaningful share impact</td><td>Yes — both swaps move menu from 26% to 33.3%</td></tr>
   <tr class="row-success"><td>Budget exhaustion risk</td><td>Low — 71% headroom remaining for future SKUs</td></tr>
+  <tr class="row-success"><td>Efficiency (share per EUR)</td><td>Potato: 1.2pp / 0.01 EUR = best. Onion-crosses: 6.1pp / 0.12 EUR = strong.</td></tr>
 </table>
 
-<p class="note" style="margin-top: 16px;">Remaining 6.7pp gap to 40% target requires either new convenience-native recipes or future SKUs (pre-breaded, marinated, pre-cooked proteins) not yet onboarded.</p>
+<p class="note" style="margin-top: 16px;">
+  Remaining 6.7pp gap to 40% target requires either new convenience-native
+  recipes or future SKUs (pre-breaded, marinated, pre-cooked proteins) not yet onboarded.
+  Onion-already-quick bucket (0.08 EUR) is optional if budget needs tightening — it adds
+  consistency but no share movement.
+</p>
 
 <footer>
   <p>Source: nordics-product-analytics/ad_hoc_analyses/convenience_cpb_prechopped_swap.sql</p>
