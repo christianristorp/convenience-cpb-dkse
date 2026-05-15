@@ -199,28 +199,38 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <tr><td>Potato</td><td>3p/4p</td><td class="right">+16.26</td><td class="right">8.04 (2 picks)</td><td class="right">24.30 (2 picks)</td></tr>
 </table>
 
-<h3>CPB delta — stepped by lever (volume-weighted, W01–W20)</h3>
+<h3>CPB delta — recipepool level (flat avg, all sizes)</h3>
+<p class="note">Methodology: flat avg recipecost across standard recipepool (excl. premium/surcharge), all sizes averaged. Δ × 3.35 recipes/box = CPB.</p>
 <table>
-  <tr><th>Lever</th><th class="right">Recipes</th><th>Share impact</th><th class="right">Cost Δ (SEK)</th><th class="right">CPB Δ (EUR)</th><th class="right">Budget</th></tr>
-  <tr><td>Onion — already ≤20</td><td class="right">58</td><td>None (cost only)</td><td class="right">1.11M</td><td class="right">+0.08</td><td class="right">11%</td></tr>
-  <tr class="row-success"><td>Onion — crosses threshold</td><td class="right">84</td><td>+6.1pp menu</td><td class="right">1.59M</td><td class="right">+0.12</td><td class="right">17%</td></tr>
-  <tr class="row-highlight"><td><strong>Onion subtotal</strong></td><td class="right"><strong>142</strong></td><td><strong>+6.1pp menu</strong></td><td class="right"><strong>2.70M</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>28%</strong></td></tr>
-  <tr class="row-success"><td>Potato</td><td class="right">25</td><td>+1.2pp menu</td><td class="right">0.19M</td><td class="right">+0.01</td><td class="right">1%</td></tr>
-  <tr class="row-highlight"><td><strong>Combined total</strong></td><td class="right"><strong>167</strong></td><td><strong>+7.3pp menu</strong></td><td class="right"><strong>2.89M</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>29%</strong></td></tr>
+  <tr><th>Step</th><th class="right">Avg recipecost (SEK)</th><th class="right">Δ / recipe</th><th class="right">CPB Δ (EUR)</th><th class="right">Budget consumed</th></tr>
+  <tr><td>Baseline</td><td class="right">78.28</td><td class="right">—</td><td class="right">—</td><td class="right">—</td></tr>
+  <tr class="row-success"><td>+ Onion</td><td class="right">78.78</td><td class="right">+0.50</td><td class="right">+0.15</td><td class="right">21%</td></tr>
+  <tr class="row-success"><td>+ Potato</td><td class="right">79.01</td><td class="right">+0.23</td><td class="right">+0.07</td><td class="right">10%</td></tr>
+  <tr class="row-highlight"><td><strong>Combined</strong></td><td class="right"><strong>79.01</strong></td><td class="right"><strong>+0.73</strong></td><td class="right"><strong>+0.21</strong></td><td class="right"><strong>30%</strong></td></tr>
 </table>
 
 <div class="stats">
-  <div class="stat"><div class="value">2.89M</div><div class="label">Total cost Δ (SEK)</div></div>
-  <div class="stat"><div class="value">2.31</div><div class="label">CPB Δ (SEK/box/wk)</div></div>
-  <div class="stat"><div class="value green">0.20</div><div class="label">CPB Δ (EUR/box/wk)</div></div>
-  <div class="stat"><div class="value green">29%</div><div class="label">Budget consumed</div></div>
+  <div class="stat"><div class="value">+0.73</div><div class="label">Δ SEK / recipe</div></div>
+  <div class="stat"><div class="value">× 3.35</div><div class="label">Recipes / box</div></div>
+  <div class="stat"><div class="value green">0.21</div><div class="label">CPB Δ (EUR)</div></div>
+  <div class="stat"><div class="value green">30%</div><div class="label">of 0.7 EUR budget</div></div>
 </div>
 
+<h3>CPB delta — menu level (volume-weighted, W01–W20)</h3>
+<table>
+  <tr><th>Lever</th><th class="right">Recipes</th><th>Share impact</th><th class="right">CPB Δ (EUR)</th><th class="right">Budget</th></tr>
+  <tr><td>Onion — already ≤20</td><td class="right">58</td><td>None (cost only)</td><td class="right">+0.08</td><td class="right">11%</td></tr>
+  <tr class="row-success"><td>Onion — crosses threshold</td><td class="right">84</td><td>+6.1pp menu</td><td class="right">+0.12</td><td class="right">17%</td></tr>
+  <tr class="row-highlight"><td><strong>Onion subtotal</strong></td><td class="right"><strong>142</strong></td><td><strong>+6.1pp menu</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>28%</strong></td></tr>
+  <tr class="row-success"><td>Potato</td><td class="right">25</td><td>+1.2pp menu</td><td class="right">+0.01</td><td class="right">1%</td></tr>
+  <tr class="row-highlight"><td><strong>Combined total</strong></td><td class="right"><strong>167</strong></td><td><strong>+7.3pp menu</strong></td><td class="right"><strong>+0.20</strong></td><td class="right"><strong>29%</strong></td></tr>
+</table>
+
 <p class="note">
-  Budget: 0.7 EUR. Onion-crosses is the largest CPB draw (0.12 EUR) but also
-  the primary share driver. Onion-already-quick (0.08 EUR) delivers no share
-  gain — pure cost investment in consistency. Potato is negligible CPB (0.01 EUR)
-  with meaningful share contribution. FX: 11.49 SEK/EUR.
+  Two views: recipepool (steady-state if all recipes equally scheduled) = 0.21 EUR;
+  menu actuals (W01–W20 volume-weighted) = 0.20 EUR. Both converge at ~30% budget.
+  Onion drives ~70% of cost, potato ~30%. Onion-already-quick is a consistency
+  investment with no share return.
 </p>
 
 <h2>Gap to Target</h2>
