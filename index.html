@@ -124,10 +124,6 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 <h1>Convenience CPB Deployment — DKSE Pre-Chopped Swap</h1>
 <p class="meta">Analysis: Christian Jensen · 15 May 2026 · Menu period: W01–W20 2026 · Market: DKSE</p>
 
-<div class="callout">
-  <strong>Open question:</strong> Does ingredient_name = 'onion' capture all intended variants (red onion / shallot / spring onion)? Confirm with Taryn before deployment.
-</div>
-
 <h2>Baseline</h2>
 
 <div class="grid-2">
@@ -150,6 +146,15 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 </div>
 
 <h2>Swap Impact — Quick Share</h2>
+
+<h3>Onion shortlist definition</h3>
+<table>
+  <tr><th>Filter</th><th>Value</th></tr>
+  <tr><td>ingredient_name</td><td>= 'onion'</td></tr>
+  <tr><td>total_cooking_time_minutes</td><td>≤ 25</td></tr>
+  <tr><td>dish_type exclusions</td><td>NOT IN ('Pizza', 'Salad', 'Sandwich', 'Wrap')</td></tr>
+  <tr><td>Recipepool filters</td><td>Standard DKSE active recipes (non-addon, non-seasonal)</td></tr>
+</table>
 
 <h3>Shortlist &amp; subset classification</h3>
 <table>
@@ -268,7 +273,6 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 <footer>
   <p>Source: nordics-product-analytics/ad_hoc_analyses/convenience_cpb_prechopped_swap.sql</p>
   <p>Tables: dimension_recipes_enriched, recipe_csku_ingredient_picklist, menu_recipe_csku_ingredient_picklist, staticprices_enriched, dimension_recipes_in_mps_historic_enriched, facts_recipes_ordered_enriched</p>
-  <p>Open question pending: Onion ingredient scope (exact 'onion' vs. red onion / shallot / spring onion) — confirm with Taryn.</p>
 </footer>
 
 </body>
